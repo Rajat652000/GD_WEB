@@ -1,0 +1,46 @@
+{% extends "bash.html" %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'detail.css' %}">
+    <script>
+        function openModal(imageSrc) {
+            document.getElementById("modal-img").src = imageSrc;
+            document.getElementById("image-modal").style.display = "flex";
+        }
+        function closeModal() {
+            document.getElementById("image-modal").style.display = "none";
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensure mobile responsiveness -->
+{% endblock head %}
+
+{% block title %}
+    {{ machine_detail.Machine_name }}
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="left" style="background-image: url('{{ machine_detail.getURL }}');"></div>
+    <div class="right">
+        <h1>{{ machine_detail.Machine_name }}</h1>
+        <p>{{ machine_detail.Description }}</p>
+        <p class="price">₹{{ machine_detail.Price }}</p>
+        <a href="/contact/{{machine_detail.id}}" class="btn">Enquire Now</a>
+    </div>
+</div>
+
+<h1 class="gallery-title">View Images</h1>
+<div class="image-gallery">
+    {% for image in machine_detail.images.all %}
+        <div class="card" onclick="openModal('{{ image.image.url }}')">
+            <img src="{{ image.image.url }}" alt="Machine Image">
+        </div>
+    {% endfor %}
+</div>
+
+<div id="image-modal" class="modal" onclick="closeModal()">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img id="modal-img" src="" alt="Expanded View">
+</div>
+{% endblock content %}

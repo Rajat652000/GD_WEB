@@ -1,0 +1,31 @@
+{% extends "bash.html" %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+{% endblock head %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+  <section class="info">
+    <img src="static/logo.jpg" alt="GD Engineering Logo">
+    <h1>GD ENGINEERING AND TRADING</h1>
+  </section>
+
+  <section class="cards-wrapper">
+    {% for product in Products reversed %}
+    <div class="card-grid-space">
+      <a class="card" href="product_detail/{{ product.id }}" style="background-image: url({{ product.getURL }})">
+        <div class="card-content">
+          <h1>{{ product.Product_name }}</h1>
+          <p>{{ product.P_Description }}</p>
+          <div class="date">{{ product.uploaded_at }}</div>
+          <div class="tag">₹{{ product.P_Price }}</div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </section>
+{% endblock content %}
