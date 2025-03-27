@@ -1,0 +1,148 @@
+/* General Styles */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #141414, #222);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #FFD700; /* Gold */
+}
+
+/* Form Container */
+.container {
+    width: 90%;
+    max-width: 600px;
+    background: rgba(24, 24, 24, 0.95);
+    border-radius: 12px;
+    box-shadow: 0px 0px 20px #FFD700, 0px 0px 40px #DAA520;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Labels */
+form label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFD700;
+    margin: 5px 0;
+    text-align: left;
+    width: 100%;
+}
+
+/* Input Fields & Dropdown */
+form input, select {
+    width: 100%; /* Make inputs full width */
+    max-width: 100%; /* Prevent overflowing */
+    padding: 12px;
+    margin: 5px 0;
+    border: 2px solid #FFD700;
+    border-radius: 5px;
+    background-color: rgba(34, 34, 34, 0.8);
+    color: white;
+    font-size: 14px;
+    transition: 0.3s ease-in-out;
+    box-sizing: border-box;
+}
+
+form input:focus, select:focus {
+    border-color: #DAA520;
+    box-shadow: 0 0 10px #FFD700;
+    outline: none;
+}
+
+/* Buttons */
+button {
+    width: 100%;
+    background: linear-gradient(45deg, #FFD700, #DAA520);
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: linear-gradient(45deg, #DAA520, #FFD700);
+    box-shadow: 0px 0px 15px #FFD700;
+}
+
+/* Product List */
+#product-list {
+    width: 100%;
+}
+
+.product-item {
+    display: flex;
+    flex-wrap: wrap; /* Wrap content properly */
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: rgba(34, 34, 34, 0.8);
+    border: 2px solid #FFD700;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.product-item input {
+    flex: 1; /* Make input fields take full space */
+    margin: 5px;
+}
+
+/* Remove Button */
+.product-item button {
+    background: red;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.product-item button:hover {
+    background: darkred;
+}
+
+/* Total Amount */
+h3 {
+    font-size: 20px;
+    color: #FFD700;
+    margin-top: 20px;
+}
+
+/* RESPONSIVE FIXES */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .product-item {
+        flex-direction: column; /* Stack elements in small screens */
+        align-items: center;
+    }
+
+    .product-item input, .product-item button {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
+}

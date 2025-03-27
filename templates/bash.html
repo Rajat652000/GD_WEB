@@ -1,0 +1,109 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}{% endblock head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+
+    <style>
+        /* Navbar Styling */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Centers navbar items */
+            padding: 12px 0;
+            z-index: 1000;
+            box-shadow: 0px 0px 15px rgba(255, 0, 255, 0.5);
+        }
+
+        /* Keep Navbar Links in a Row */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: row; /* Ensures horizontal layout */
+            align-items: center; /* Aligns items in the middle */
+            justify-content: center;
+            gap: 40px; /* Adjust spacing between items */
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Navbar Links */
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 15px;
+            transition: 0.3s;
+            white-space: nowrap; /* Prevents text wrapping */
+        }
+
+        .nav-links a:hover {
+            color: rgb(235, 239, 11);
+            transform: scale(1.1);
+        }
+
+        /* Navbar Button */
+        .nav-button {
+            display: inline-block;
+            padding: 8px 12px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background: transparent;
+            border: 0.5px solid transparent;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: 0.4s ease-in-out;
+            text-align: center;
+        }
+
+        .nav-button:hover {
+            border-color: rgb(235, 239, 11);
+            box-shadow: 0px 0px 12px white;
+            transform: scale(1.05);
+        }
+
+        /* Fix Navbar Overlapping Content */
+        .content {
+            margin-top: 70px; /* Adjusted to ensure content starts below navbar */
+            padding: 20px;
+        }
+
+        /* Responsive Navbar (Fix for Smaller Screens) */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 20px; /* Reduce space for smaller screens */
+            }
+        
+            .nav-links a {
+                font-size: 14px;
+                padding: 6px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="nav-links">
+            <li><a class="nav-button" href="/">Machine</a></li>
+            <li><a class="nav-button" href="/product">Products</a></li>  
+            <li><a class="nav-button" href="/about">About</a></li>
+        </ul>
+    </nav>             
+
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

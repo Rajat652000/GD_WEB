@@ -1,0 +1,123 @@
+/* General Styles */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #141414, #222);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contact Form Layout */
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 800px;
+    background: rgba(24, 24, 24, 0.9);
+    border-radius: 12px;
+    box-shadow: 0px 0px 20px #ffcc00, 0px 0px 40px #a100ff;
+    padding: 20px;
+    margin: 20px auto;
+    box-sizing: border-box;
+}
+
+/* Form Section */
+.form-section {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-section h2 {
+    color: #ffcc00;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 0px 0px 10px #ffcc00;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+.contact-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Ensures two equal columns */
+    gap: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Form Group */
+.contact-form .form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Form Inputs */
+.contact-form .form-control {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    background-color: rgba(34, 34, 34, 0.8);
+    border: 2px solid #ffcc00;
+    color: white;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: 0.3s ease-in-out;
+    box-sizing: border-box;
+}
+
+.contact-form .form-control:focus {
+    border-color: #a100ff;
+    box-shadow: 0 0 10px #a100ff;
+    outline: none;
+}
+
+/* Labels */
+.contact-form label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #ddd;
+    margin-bottom: 5px;
+}
+
+/* Submit Button */
+.contact-form .btn-submit {
+    grid-column: span 2; /* Button spans both columns */
+    background: linear-gradient(45deg, #ffcc00, #a100ff);
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.contact-form .btn-submit:hover {
+    background: linear-gradient(45deg, #a100ff, #ffcc00);
+    box-shadow: 0px 0px 15px #ffcc00;
+}
+
+/* Responsive Styles for Mobile */
+@media (max-width: 768px) {
+    .contact-container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .contact-form {
+        grid-template-columns: 1fr !important; /* Single column on mobile */
+    }
+
+    .btn-submit {
+        grid-column: span 1;
+    }
+}

@@ -1,0 +1,119 @@
+{% extends "bash.html" %}
+{% load static %}
+
+{% block title %}Product Inquiry{% endblock title %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'Product_contact.css' %}">
+{% endblock head %}
+
+{% block content %}
+<div class="container">
+    <h1>Inquiry Form</h1>
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Name:</label>
+        <input type="text" name="name" required>
+
+        <label>Phone:</label>
+        <input type="text" name="phone" required>
+
+        <label>Email:</label>
+        <input type="email" name="email" required>
+
+        <label>City:</label>
+        <input type="text" name="city" required>
+
+        <label>Purpose:</label>
+        <input type="text" name="purpose" required>
+
+        <h3>Selected Products:</h3>
+        <div id="product-list">
+            {% if product %}
+            <div class="product-item">
+                <input type="hidden" name="product_id[]" value="{{ product.id }}">
+                <input type="text" name="product_name[]" value="{{ product.Product_name }}" readonly>
+                <input type="number" name="product_price[]" value="{{ product.P_Price }}" readonly>
+                <input type="number" name="quantity[]" value="1" min="1" onchange="updateTotal()">
+                <button type="button" onclick="removeProduct(this)">Remove</button>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Dropdown to Select Product -->
+        <select id="product-dropdown">
+            <option value="">-- Select Product --</option>
+            {% for prod in all_products %}
+            <option value="{{ prod.id }}" data-price="{{ prod.P_Price }}">{{ prod.Product_name }}</option>
+            {% endfor %}
+        </select>        
+
+        <button type="button" onclick="addProduct()">+ Add Another Product</button>
+
+        <h3>Total Amount: ₹<span id="total-amount">0</span></h3>
+
+        <button type="submit">Submit Inquiry</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById("product-dropdown").addEventListener("change", function () {
+        let selectedOption = this.options[this.selectedIndex];
+
+        if (!selectedOption.value) {
+            return;
+        }
+
+        let productId = selectedOption.value;
+        let productName = selectedOption.text;
+        let productPrice = selectedOption.getAttribute("data-price");
+
+        // Ensure no duplicate products are added
+        let existingProducts = document.querySelectorAll(".product-item input[name='product_name[]']");
+        for (let product of existingProducts) {
+            if (product.value === productName) {
+                alert("Product already added!");
+                return;
+            }
+        }
+
+        // Create new product element
+        let newProduct = document.createElement("div");
+        newProduct.classList.add("product-item");
+        newProduct.innerHTML = `
+            <input type="hidden" name="product_id[]" value="${productId}">
+            <input type="text" name="product_name[]" value="${productName}" readonly>
+            <input type="number" name="product_price[]" value="${productPrice}" readonly>
+            <input type="number" name="quantity[]" value="1" min="1" onchange="updateTotal()">
+            <button type="button" onclick="removeProduct(this)">Remove</button>
+        `;
+
+        // Append directly to product list
+        document.getElementById("product-list").appendChild(newProduct);
+
+        // Reset dropdown to default selection
+        this.selectedIndex = 0;
+
+        updateTotal();
+    });
+
+    function removeProduct(button) {
+        button.parentElement.remove();
+        updateTotal();
+    }
+
+    function updateTotal() {
+        let total = 0;
+        document.querySelectorAll(".product-item").forEach(item => {
+            let price = parseFloat(item.querySelector("input[name='product_price[]']").value);
+            let quantity = parseInt(item.querySelector("input[name='quantity[]']").value);
+            total += price * quantity;
+        });
+        document.getElementById("total-amount").innerText = total;
+    }
+
+    // Initialize total calculation on page load
+    updateTotal();
+</script>
+
+{% endblock content %}

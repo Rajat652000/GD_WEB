@@ -1,0 +1,34 @@
+{% extends 'bash.html' %}
+
+{% block content %}
+<h2>Machine List</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Image</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for machine in machines %}
+        <tr>
+            <td>{{ machine.Machine_name }}</td>
+            <td>{{ machine.Description }}</td>
+            <td>{{ machine.Price }}</td>
+            <td>
+                {% if machine.image %}
+                    <img src="{{ machine.image.url }}" alt="{{ machine.Machine_name }}" width="100">
+                {% else %}
+                    No Image
+                {% endif %}
+            </td>
+            <td>
+                <a href="/delete-machine/{{machine.id}}" class="btn">Delete machine</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
