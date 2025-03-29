@@ -2,7 +2,7 @@
 
 {% load static %}
 {% block head %}
-    <link rel="stylesheet" type="text/css" href="{% static 'machine_form.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'Product_contact.css' %}">
 {% endblock head %}
 
 {% block title %}
@@ -10,7 +10,7 @@ Contact Us
 {% endblock title %}
 
 {% block content %}
-<div class="contact-container">
+<div class="container">
     <div class="form-section">
         <h2>Contact Us</h2>
         <form method="POST" action="{% url 'contact' pk=Product_detail.id %}" class="contact-form">
