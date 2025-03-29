@@ -9,7 +9,7 @@ def Index(request):
     context = {
         "machines": machine
     }
-    return render(request, 'Index.html', context)
+    return render(request, 'index.html', context)
 
 def Machine_detail(request, pk):
     machine_detail = get_object_or_404(Machines, id=pk)
@@ -34,7 +34,7 @@ def Machine_form(request):
 
         return redirect("/")
 
-    return render(request, "machine_Form.html")
+    return render(request, "machine_form.html")
 
 def Product_form(request):
     if request.user.is_anonymous:
