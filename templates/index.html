@@ -20,9 +20,9 @@
       <a class="card"  href="machine_detail/{{ machine.id }}" style="background-image: url({{ machine.getURL }});">
         <div class="card-content">
           <h1>{{ machine.Machine_name }}</h1>
-          <p>{{ machine.Description }}</p>
           <div class="date">{{ machine.uploaded_at }}</div>
           <div class="tag">₹{{ machine.Price }}</div>
+          <div class="tag">click to know more</div>
         </div>
       </a>
     </div>
